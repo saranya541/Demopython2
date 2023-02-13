@@ -1,0 +1,36 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E711" />
+          <option value="E225" />
+          <option value="W292" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyStatementEffectInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnreachableCodeInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="gtts.gTTS" />
+          <option value="pyqrcode.create.Png" />
+          <option value="pyqrcode.create.png" />
+          <option value="travelapp.views.HttpResponse" />
+          <option value="travelproject.urls.include" />
+          <option value="moviesapp.views.movie" />
+          <option value="todoapp.views.task" />
+          <option value="shop.views.available" />
+          <option value="shop.models.reverse" />
+          <option value="shop.views.c_slug" />
+          <option value="cartapp.views.ObjectDoesNotExist" />
+          <option value="restapp.models.Task.objects" />
+          <option value="cv2.imshow" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="XmlDeprecatedElement" enabled="false" level="WARNING" enabled_by_default="false" />
+  </profile>
+</component>

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  {% if branch %}
+    {{branch.description|truncatewords:155}}
+      {% else %}
+        welcome banking
+      {% endif %}
+    {% endblock %}
+  {% block title %}
+
+{% if branch %}
+<!--       {{ category.name}}-->
+         {% else %}
+
+         {% endif %}
+       {% endblock %}
+
+{% block content %}
+{% if branch %}
+<div>
+    <div class="row my_row_class">
+        <div class="mx_auto">
+        <p><a href="{% url 'bank:alldiscat' %}"></a></p>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="mx_auto">
+    {% if branch %}
+    <img class="my_image" src="{{branch.image.url}}" alt="{{branch.name}}" style="width:300px;height:200px">
+</div>
+<br>
+<div>
+    <h1 class="my_title">{{branch.name}}</h1>
+    <p class="text-justify">{{branch.description}}</p>
+</div>
+{% else %}
+<div>
+<img class="my_image my_image_padding" src="{% static 'img/bannar.png' %}" alt="our products" width="1000px" height="1000px">
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">Banking and Finance</h1>
+    <p class="text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</div>
+{% endif %}
+<div class="container">
+    <div class="row mx_auto">
+        {% for district in districts.object_list %}
+
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-lg-4">
+            <div class="card h-100 text-center">
+                <a href="{{district.get_url}}"><img class="card-img-top" src="{{district.image.url}}" alt="{{district.name}}" height="150px"></a>
+                <div class="card-body">
+                    <h4>{{district.name}}</h4>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="mx_auto">
+        {% if districts.paginator.num_pages > 1 %}
+
+        <hr>
+        <div class="text-center">
+            {% for pg in districts.paginator.page_range %}
+                <a href="?page={{pg}}"  class="btn btn-light btn-sm {% if districts.number == pg %} active {% endif %}">{{pg}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <br>
+</div>
+{% endblock %}

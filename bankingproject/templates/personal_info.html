@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<head>
+
+    <title>Personalinfo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+
+
+
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron text-center bg-success text-white">
+      <h1>Personal Info</h1>
+
+    </div>
+    <div class="row pt-3">
+      <div class="col-md-12 col-sm-12 col-12 p-2 ">
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="">Full Name              :</label>
+              <input type="text" class="form-control" id="" placeholder="Full Name">
+            </div><br>
+            <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="inputEmail4">DOB         :</label>
+              <input type="date" class="form-control" id="inputEmail4" placeholder="Date of birth">
+            </div><br>
+              <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="inputEmail4">Age         :</label>
+              <input type="text" class="form-control" id="" placeholder="Enter your age">
+            </div><br>
+                <div class="form-group col-md-3">
+                   <label>Gender       : <br></label><br>
+                  <input type="radio" name="Gender" placeholder="enter your Gender">male<br>
+                       <input type="radio" name="Gender" placeholder="enter your Gender">female<br>
+                </div><br>
+            <div class="form-group col-md-3 offset-md-1">
+              <label for="inputPassword4">Phone Number :</label>
+              <input type="text" class="form-control" id="input Password4" placeholder="Enter your phone number">
+            </div>
+          </div><br>
+                <div class="form-group col-md-3 offset-md-1">
+              <label for="inputPassword4">Mail ID :</label>
+              <input type="email" class="form-control" id="inputPassword4" placeholder="Enter your email">
+            </div>
+          </div><br>
+                <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="inputAddress">Address 1:</label>
+                <textarea class="form-control" id="inputAddress" placeholder="Enter your address"></textarea>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="inputAddress2">Address 2 :</label>
+                <textarea class="form-control" id="inputAddress2" placeholder="Enter your address 2"></textarea>
+              </div>
+            </div>
+          </div><br>
+
+        {{ personform.as_p }}
+                 <div class="form-group col-md-2 other">
+              <label class="divOtherState ">Other Branch</label><br>
+              <input type="text" class="form-control divOtherBranch" id="dpdlOtherBranch" placeholder="Other Branch">
+            </div><br>
+        </div><br>
+             <div class="form-group col-md-2">
+              <label for="inputState">Account type :</label>
+              <select id="dpdlAccount type" class="form-control">
+                <option selected>Savings account</option>
+                <option selected>Current accoount</option>
+
+
+<!--                <option selected>choose Account type</option>-->
+              </select>
+            </div><br>
+             <div class="form-group col-md-2 other">
+               <label>Materials Provide          : </label><br><input type="checkbox" name="materials" placeholder="enter your priorities">Debit card<br>
+                       <input type="checkbox" name="materials" placeholder="enter your Gender">Credit card<br>
+                       <input type="checkbox" name="materials" placeholder="enter your Gender">Cheque book<br>
+            </div><br>
+            <div><br>
+                <div><br>
+
+              <a href="http://127.0.0.1:8000/office/form" class="btn btn-warning">Submit</a><br>
+            <a href="http://127.0.0.1:8000/" class="btn btn-primary">Logout</a><br>
+                    </div>
+                </div>
+    </form>
+
+    <script>
+        $(document).ready(function(){
+
+            $('#id_districts').empty();
+
+            var mStrings = JSON.parse('{{ json_m_strings | escapejs }}');
+            var eStrings = JSON.parse('{{ json_e_strings | escapejs }}');
+            var kStrings = JSON.parse('{{ json_k_strings | escapejs }}');
+            var wStrings = JSON.parse('{{ json_w_strings | escapejs }}');
+            var tStrings = JSON.parse('{{ json_t_strings | escapejs }}');
+
+  $('#id_branch').on('change', function(){
+
+                var branch = $('#id_branch').val();
+
+                if(branch == 'Malappuram'){
+
+                    $('#id_districts').empty();
+
+                    var length = mStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                         districts= mStrings[i];
+                        $('#id_districts').append(
+
+                            `
+                            <option value="${districts}">
+                                ${districts}
+                            </option>
+                            `
+
+                        );
+
+                    }
+
+                }
+
+                else if(branch == 'Eranakkulam'){
+
+                    $('#id_districts').empty();
+
+                    var length = eStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                       districts = eStrings[i];
+                        $('#id_districts').append(
+
+                            `
+                            <option value="${districts}">
+                                ${districts}
+                            </option>
+                            `
+
+                        );
+
+                    }
+
+                }
+                else if(branch== 'Kozhikode'){
+
+                    $('#id_districts').empty();
+
+                    var length = kStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                      districts = kStrings[i];
+                        $('#id_districts').append(
+
+                            `
+                            <option value="${districts}">
+                                ${districts}
+                            </option>
+                            `
+
+                        );
+
+                    }
+
+                }
+                else if(branch == 'Wayanad'){
+
+                    $('#id_districts').empty();
+
+                    var length = wStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                        districts = wStrings[i];
+                        $('#id_districts').append(
+
+                            `
+                            <option value="${districts}">
+                                ${districts}
+                            </option>
+                            `
+
+                        );
+
+                    }
+
+                }
+                else if(branch == 'Thrissur'){
+
+                    $('#id_districts').empty();
+
+                    var length = tStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                        districts= tStrings[i];
+                        $('#id_districts').append(
+
+                            `
+                            <option value="${districts}">
+                                ${districts}
+                            </option>
+                            `
+
+                        );
+
+                    }
+
+                }
+
+
+                else{
+
+                    $('#id_districts').empty();
+
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>

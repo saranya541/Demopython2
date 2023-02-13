@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+
+        {{ district.description|truncatewords:155 }}
+
+
+{% endblock %}
+{% block title %}
+    {% if branch %}
+        {{ district.name }} - banking
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row my_pdt_row_class">
+    <div class="mx_auto">
+        <p> <a href="{% url 'bank:alldiscat' %}">Home</a> | <a  href="{{district.branch.get_url}}">{{district.branch}}</a> | {{branch.name}}</p>
+    </div>
+</div>
+<div class="container">
+    <br>
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <div style="min-width:18rem;">
+            <img class="my_image" src="{{district.image.url}}" alt="{{district.name}}">
+        </div>
+    </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div>
+          <h1 class="my_pdt_title"><b>{{district.name}}</b></h1>
+          <p class="my_title">Branch description</p>
+        <p class="text-justify my_pdt_text">{{district.description}}</p>
+      </div>
+</div>
+</div>
+</div>
+{% endblock %}
